@@ -1,18 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <article v-for="post in posts" :key="post.id">
+      <router-link :to="'/post/' + post.id">Post {{ post.id }}</router-link>
+    </article>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import utils from '@/utils/utils';
 
 export default {
   name: 'Home',
-  components: {
-    HelloWorld,
+  computed: {
+    posts: function () {
+      return this.$store.state.posts.content;
+    }
   },
+  mounted() {
+    if (!this.$store.state.posts.content.length) {
+      utils.get.content('posts')
+        .then(res => this.$store.commit('setPosts', utils.map.posts(res)))
+    }
+  }
 };
 </script>
