@@ -1,16 +1,23 @@
 <template>
-  <div v-if="page" class="page">
-    <h1>{{ page.title }}</h1>
-    <p v-html="page.content" />
-  </div>
+    <div class="page__content">
+      <Grid v-if="page" class="page">
+        <h1>{{ page.title }}</h1>
+        <p class="content" v-html="page.content"/>
+      </Grid>
+    </div>
 </template>
 
 <script>
 import utils from '@/utils/utils'
 import store from '@/store/store'
 
+import Grid from '@/components/general/Grid';
+
 export default {
   name: 'Page',
+  components: {
+    Grid
+  },
   computed: {
     page: function () {
       return store.getters.getPageBySlug(this.$route.params.slug);
@@ -37,3 +44,28 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.page {
+  &__content {
+    @include paddingXWide;
+    position: relative;
+    top: 30vh;
+    z-index: 10;
+
+    @include medium {
+      top: 25vh;
+    }
+  
+    h1 {
+      @include contentHead;
+      margin: 0;
+    }
+
+    p {
+      margin-top: 20px;
+      @include contentTextPage;
+    }
+  }
+}
+</style>

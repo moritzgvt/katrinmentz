@@ -1,0 +1,15 @@
+.content {
+  figure {
+    margin-left: 0;
+    margin-right: 0;
+
+    img {
+      width: 100%;
+    }
+
+    figcaption {
+      @include plain;
+      font-size: .8rem;
+    }
+  }
+}

@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     menu: null,
+    hero: null,
     posts: {
       content: [],
       count: 0,
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     },
     setPostsTotal: (state, payload) => {
       state.posts.total = parseInt(payload);
+    },
+    setHero: (state, payload) => {
+      state.hero = payload
     },
     setMenu: (state, payload) => {
       state.menu = payload;

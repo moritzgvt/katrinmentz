@@ -7,6 +7,22 @@ const map = {
         id: _get(post, 'id'),
         title: _get(post, 'title.rendered'),
         content: _get(post, 'content.rendered'),
+        position: _get(post, 'acf.project_position'),
+        image: {
+          id: _get(post, 'acf.project_title_image.id'),
+          size: _get(post, 'acf.project_title_image.sizes'),
+          alt: _get(post, 'acf.project_title_image.alt'),
+          url: _get(post, 'acf.project_title_image.url')
+        },
+        images: _get(post, 'acf.project_images') 
+          ? post.acf.project_images.map(image => {
+            return {
+              id: _get(image, 'ID'),
+              size: _get(image, 'sizes'),
+              alt: _get(image, 'alt'),
+              url: _get(image, 'url')
+            }
+          }) : ''
       }
     });
   },
@@ -29,6 +45,11 @@ const map = {
         path: getUrlPath(_get(menuItem, 'url')),
       }
     });
+  },
+  mapOptions: (payload) => {
+    return {
+      hero: _get(payload, 'acf.hero_text')
+    }
   }
 }
 
@@ -40,5 +61,6 @@ const getUrlPath = (absoluteLink) => {
 export default {
   posts: map.mapPosts,
   page: map.mapPage,
-  menu: map.mapMenu
+  menu: map.mapMenu,
+  options: map.mapOptions
 }

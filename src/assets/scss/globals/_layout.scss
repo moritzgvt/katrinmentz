@@ -1,0 +1,108 @@
+@mixin grid() {
+  @for $i from 1 to 13 {
+    .grid-#{$i} {
+      display: grid;
+      grid-template-columns: repeat($i, 1fr);
+    }
+  }
+}
+
+@include grid;
+
+@mixin full {
+  grid-column-start: start;
+  grid-column-end: end;
+}
+
+@mixin heroArea {
+  grid-column-start: 1;
+  grid-column-end: 8;
+
+  @include medium {
+    grid-column-start: 1;
+    grid-column-end: 13;
+  }
+}
+
+@mixin imageArea {
+  grid-column-start: 4;
+  grid-column-end: 12;
+
+  @include medium {
+    grid-column-start: 2;
+    grid-column-end: 12;
+  }
+}
+
+@mixin contentArea {
+  grid-column-start: 1;
+  grid-column-end: 7;
+}
+
+@mixin contentHead {
+  grid-column-start: 1;
+  grid-column-end: 7;
+
+  @include medium {
+    grid-column-start: 2;
+    grid-column-end: 12;
+  }
+}
+
+@mixin contentText {
+  grid-column-start: 2;
+  grid-column-end: 5;
+
+  @include medium {
+    grid-column-start: 2;
+    grid-column-end: 12;
+    
+    @include paddingXWide;
+  }
+}
+
+@mixin contentTextPage {
+  grid-column-start: 2;
+  grid-column-end: 7;
+
+  @include medium {
+    grid-column-start: 2;
+    grid-column-end: 12;
+  }
+}
+
+.full {
+  @include full;
+}
+
+.hero-area {
+  @include heroArea;
+}
+
+.image-area {
+  @include imageArea;
+}
+
+.content-area {
+  @include contentArea;
+}
+
+.content-head {
+  @include contentHead;
+}
+
+.content-text {
+  @include contentText;
+}
+
+@mixin flex-row-sb {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@mixin flex-col-sb {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

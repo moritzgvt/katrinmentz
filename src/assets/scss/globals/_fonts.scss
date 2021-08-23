@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+@font-face {
+  font-family: 'Casta';
+  src: url('~@/assets/fonts/casta/casta.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin plain {
+  font-family: 'Be Vietnam', sans-serif;
+  font-size: 1rem;
+  color: $black;
+}
+
+@mixin fancy {
+  font-family: 'Casta', sans-serif;
+  font-size: 5rem;
+  color: $black;
+
+  @include medium {
+    font-size: 4rem;
+  }
+
+  @include small {
+    font-size: 3em;
+  }
+}
+
+h1 {
+  @include fancy;
+}
+
+h2 {
+  @include fancy;
+}
+
+p {
+  @include plain;
+}
+
+a {
+  @include plain;
+}

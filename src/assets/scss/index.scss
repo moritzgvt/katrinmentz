@@ -3,8 +3,46 @@
 }
 
 body {
-  position: relative;
   margin: 0;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  padding: 0;
+
+  font-size: 16px;
 }
+
+p {
+  margin: 0;
+}
+
+.item-container {
+  position: relative;
+  margin-top: $itemSpacing;
+
+  @include imageArea;
+  @include flex-col-sb;
+
+  .item {
+    position: relative;
+    width: 70%;
+    margin-bottom: $itemSpacing;
+
+    @include small {
+      width: 100%;
+    }
+
+    &.left {
+      align-self: flex-start;
+    }
+
+    &.center {
+      align-self: center;
+    }
+
+    &.right {
+      align-self: flex-end;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+} 

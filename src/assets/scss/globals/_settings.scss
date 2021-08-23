@@ -1,3 +1,95 @@
 // Standard Style settings
+$basePadding: 40px;
+$headerHeight: 80px;
 
-$header-height: 60px;
+$itemSpacing: 80px;
+
+$black: #000000;
+
+$cubic-transition: cubic-bezier(0.86,0,0.07,1);
+
+@mixin medium {
+  @media screen and (max-width: 1000px) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media screen and (max-width: 650px) {
+    @content;
+  }
+}
+
+// Wide Padding
+
+@mixin paddingLeftWide {
+  padding-left: $basePadding;
+
+  @include medium {
+    padding-left: calc(#{$basePadding} / 2);
+  }
+
+  @include small {
+    padding-left: calc(#{$basePadding} / 4);
+  }
+}
+
+@mixin paddingRightWide {
+  padding-right: $basePadding;
+
+  @include medium {
+    padding-right: calc(#{$basePadding} / 2);
+  }
+
+  @include small {
+    padding-right: calc(#{$basePadding} / 4);
+  }
+}
+
+@mixin paddingXWide {
+  padding: 0 $basePadding;
+
+  @include medium {
+    padding: 0 calc(#{$basePadding} / 2);
+  }
+
+  @include small {
+    padding: 0 calc(#{$basePadding} / 4);
+  }
+}
+
+@mixin paddingLeftNarrow {
+  padding-left: calc(#{$basePadding} * 0.5);
+
+  @include medium {
+    padding-left: $basePadding;
+  }
+
+  @include small {
+    padding-left: calc(#{$basePadding} / 2);
+  }
+}
+
+@mixin paddingRightNarrow {
+  padding-right: calc(#{$basePadding} * 0.5);
+
+  @include medium {
+    padding-right: $basePadding;
+  }
+
+  @include small {
+    padding-right: calc(#{$basePadding} / 4);
+  }
+}
+
+@mixin paddingXNarrow {
+  padding-left: calc(#{$basePadding} / 2);
+
+  @include medium {
+    padding: 0 $basePadding;
+  }
+
+  @include small {
+    padding: 0 calc(#{$basePadding} / 2);
+  }
+}

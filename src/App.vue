@@ -1,11 +1,15 @@
 <template>
   <div id="app">
-    <Header />
+    <div id="sentinel"/>
+
+    <Header/>
+
     <main>
       <router-view/>
     </main>
-    <footer>
 
+    <footer>
+      <img src="./assets/symbols/smiley.svg" alt="Smiley">
     </footer>
   </div>
 </template>
@@ -21,12 +25,20 @@ export default {
 }
 </script>
 
-<style>
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
+<style lang="scss">
+  main {
+    position: relative;
+    margin-top: $headerHeight;
+  }
+
+  footer {
+    height: 100px;
+    margin: 50px 0;
+
+    img {
+      display: block;
+      height: 100%;
+      margin: 0 auto;
+    }
   }
 </style>
