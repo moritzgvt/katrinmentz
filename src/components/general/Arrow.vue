@@ -71,6 +71,7 @@ export default {
     z-index: 100;
     height: 40px;
     bottom: 50px;
+    left: 20px;
 
     img {
       height: 100%;

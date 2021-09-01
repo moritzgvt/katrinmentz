@@ -64,7 +64,7 @@ const generateQuery = (endpoint, params={}) => {
     params.fields.map(field => fields += '&_fields[]=' + field);
   }
 
-  filter += params.per_page ? '&per_page=' + params.per_page : '';
+  filter += params.per_page ? '&filter[posts_per_page]=' + params.per_page : '';
   filter += params.offset ? '&offset=' + params.offset : '';
   filter += params.orderby ? '&orderby=' + params.orderby : '';
   filter += params.meta_key ? '&meta_key=' + params.meta_key : '';

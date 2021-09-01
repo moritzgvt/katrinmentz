@@ -34,6 +34,7 @@ export default {
   footer {
     height: 100px;
     margin: 50px 0;
+    transform: translateY(30vh);
 
     img {
       display: block;

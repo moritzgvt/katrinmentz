@@ -21,6 +21,8 @@
           <img :src="post.image.size.large" :alt="post.image.alt">
         </router-link>
       </article>
+
+      <div id="load-more-sentinel"></div>
     </section>
   </Grid>
 </template>
@@ -42,6 +44,9 @@ export default {
     },
     options: function () {
       return this.$store.state.hero;
+    },
+    loadMorePossible: function () {
+      return this.$store.state.posts.count < this.$store.state.posts.total;
     }
   },
   data: function() {
@@ -50,7 +55,17 @@ export default {
     }
   },
   methods: {
-    getSlope: () => utils.methods.slope()
+    getSlope: () => utils.methods.slope(),
+    loadMoreHandler: function (entries) {
+      if (this.loadMorePossible) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            utils.get.content('posts', { offset: this.$store.state.posts.count })
+              .then(res => this.$store.commit('setPosts', utils.map.posts(res)))
+          }
+        });
+      }
+    }
   },
   mounted() {
     if (!this.$store.state.hero) {
@@ -66,6 +81,9 @@ export default {
     document.addEventListener('scroll', () => {
       utils.methods.parallax(this.$refs.hero);
     });
+
+    let observer = new IntersectionObserver(this.loadMoreHandler);
+    observer.observe(document.querySelector('#load-more-sentinel'));
   },
   destroyed: function () {
   }

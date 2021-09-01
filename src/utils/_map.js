@@ -42,7 +42,7 @@ const map = {
         id: _get(menuItem, 'ID'),
         title: _get(menuItem, 'title'),
         url: _get(menuItem, 'url'),
-        path: getUrlPath(_get(menuItem, 'url')),
+        path: getUrlPath(_get(menuItem, 'url'))
       }
     });
   },
