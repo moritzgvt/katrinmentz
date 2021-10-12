@@ -29,6 +29,7 @@ export default {
   main {
     position: relative;
     margin-top: $headerHeight;
+    min-height: 50vh;
   }
 
   footer {

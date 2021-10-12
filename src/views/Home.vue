@@ -56,6 +56,9 @@ export default {
   },
   methods: {
     getSlope: () => utils.methods.slope(),
+    scrollHandler: function () {
+      utils.methods.parallax(this.$refs.hero)
+    },
     loadMoreHandler: function (entries) {
       if (this.loadMorePossible) {
         entries.forEach((entry) => {
@@ -78,14 +81,13 @@ export default {
         .then(res => this.$store.commit('setPosts', utils.map.posts(res)))
     }
 
-    document.addEventListener('scroll', () => {
-      utils.methods.parallax(this.$refs.hero);
-    });
+    document.addEventListener('scroll', this.scrollHandler);
 
     let observer = new IntersectionObserver(this.loadMoreHandler);
     observer.observe(document.querySelector('#load-more-sentinel'));
   },
-  destroyed: function () {
+  beforeDestroy() {
+    document.removeEventListener('scroll', this.scrollHandler);
   }
 };
 </script>
