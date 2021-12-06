@@ -1,6 +1,6 @@
 <template>
     <div v-if="page" class="page">
-      <section class="page__content">
+      <section class="page__content" :class="{ 'fixed' : !relativePosition }">
         <Grid v-if="page" class="page">
           <h1>{{ page.title }}</h1>
           <p v-if="width > 1000" class="content" v-html="page.content"/>
@@ -17,6 +17,12 @@
             <img  :src="image.size.large" :alt="image.alt" loading="lazy">
           </div> 
 
+          <p v-if="width < 1000" v-html="page.content"/>
+        </section>
+      </Grid>
+
+      <Grid v-else>
+        <section class="page__images item-container">
           <p v-if="width < 1000" v-html="page.content"/>
         </section>
       </Grid>
@@ -41,7 +47,11 @@ export default {
         'center',
         'right'
       ],
-      width: null
+      width: null,
+      relativePosition: false,
+      relativePages: [
+        'imprint'
+      ]
     }
   },
   computed: {
@@ -61,6 +71,13 @@ export default {
     },
     handleResize: function() {
       this.width = window.innerWidth;
+    },
+    isTextFixed: function () {
+      if (this.relativePages.includes(this.$route.params.slug)) {
+        this.relativePosition = true;
+      } else {
+        this.relativePosition = false;
+      }
     }
   },
   mounted() {
@@ -74,12 +91,16 @@ export default {
     if (!this.page) {
       this.loadPageContent();
     }
+
+    this.isTextFixed();
   },
   watch: {
     $route() {
       if (!this.page) {
         this.loadPageContent();
       }
+
+      this.isTextFixed();
     }
   }
 }
@@ -89,9 +110,13 @@ export default {
 .page {
   &__content {
     @include paddingXWide;
-    position: fixed;
+    position: relative;
     top: 30vh;
     z-index: 10;
+
+    &.fixed {
+      position: fixed;
+    }
 
     @include medium {
       position: relative;
