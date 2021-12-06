@@ -5,7 +5,9 @@
     <Header/>
 
     <main>
-      <router-view/>
+      <transition name="fade" mode="out-in" appear>
+        <router-view/>
+      </transition>
     </main>
 
     <footer>
@@ -42,5 +44,12 @@ export default {
       height: 100%;
       margin: 0 auto;
     }
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .15s ease-in-out;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
 </style>

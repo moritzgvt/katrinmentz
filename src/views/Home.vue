@@ -7,7 +7,7 @@
       </h1>
     </section>
 
-    <Arrow bottom="40"/>
+    <Arrow bottom="30"/>
 
     <section class="home__flow item-container">
       <article 
