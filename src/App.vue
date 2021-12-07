@@ -11,7 +11,7 @@
     </main>
 
     <footer>
-      <img src="./assets/symbols/smiley.svg" alt="Smiley">
+      <img src="./assets/symbols/smiley.svg" alt="Smiley"/>
     </footer>
   </div>
 </template>
@@ -31,13 +31,13 @@ export default {
   main {
     position: relative;
     margin-top: $headerHeight;
-    min-height: 50vh;
+    min-height: calc(100vh - #{$headerHeight});
   }
 
   footer {
-    height: 100px;
+    position: relative;
+    height: 60px;
     margin: 50px 0;
-    transform: translateY(30vh);
 
     img {
       display: block;

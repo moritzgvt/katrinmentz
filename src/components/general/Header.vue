@@ -59,6 +59,8 @@ header {
     }
 
     &__logo {
+      position: relative;
+
       a {
         display: inline-block;
         text-decoration: none;
@@ -67,6 +69,30 @@ header {
         @include small {
           line-height: 40px;
         }
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 60px;
+        width: 60px;
+        display: inline-block;
+        background-image: url('../../assets/symbols/smiley.svg');
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(0deg);
+        pointer-events: none;
+
+        transition: 
+          opacity .15s $cubic-transition,
+          transform .3s $cubic-transition;
+        transition-delay: 0s, .2s;
+      }
+
+      &:hover:before {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(180deg);
       }
     }
 
