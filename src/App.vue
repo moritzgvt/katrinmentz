@@ -5,11 +5,13 @@
     <Header/>
 
     <main>
-      <router-view/>
+      <transition name="fade" mode="out-in" appear>
+        <router-view/>
+      </transition>
     </main>
 
     <footer>
-      <img src="./assets/symbols/smiley.svg" alt="Smiley">
+      <img src="./assets/symbols/smiley.svg" alt="Smiley"/>
     </footer>
   </div>
 </template>
@@ -29,17 +31,25 @@ export default {
   main {
     position: relative;
     margin-top: $headerHeight;
+    min-height: calc(100vh - #{$headerHeight});
   }
 
   footer {
-    height: 100px;
+    position: relative;
+    height: 60px;
     margin: 50px 0;
-    transform: translateY(30vh);
 
     img {
       display: block;
       height: 100%;
       margin: 0 auto;
     }
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .15s ease-in-out;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
 </style>

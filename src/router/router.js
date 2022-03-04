@@ -27,7 +27,15 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
   scrollBehavior (to, from, savedPosition) {
-    return { x: 0, y: 0}
+    if (savedPosition) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(savedPosition);
+        }, 300);
+      });
+    } else {
+      return { x: 0, y: 0 };
+    }
   }
 });
 

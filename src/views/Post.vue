@@ -2,7 +2,7 @@
   <div class="post" v-if="post">
     <section class="post__content" ref="content">
       <Grid>
-        <h1>{{ post.title }}</h1>
+        <h1 v-html="post.title"/>
         <p v-if="width > 1000" class="content" v-html="post.content"/>
       </Grid>
     </section>

@@ -71,13 +71,12 @@ export default {
     z-index: 100;
     height: 40px;
     bottom: 50px;
-    left: 20px;
+
+    @include paddingXWide;
 
     img {
       height: 100%;
     }
-
-    @include paddingXWide;
 
     transition: all .25s $cubic-transition;
 
